@@ -7,12 +7,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Convert ENTITY OBJECT AND DTO OBJECT
+ * 
+ * @author Witor S. Olievira
+ *
+ */
 @Configuration
-public class Mapper implements ModelMapperCustom {
+public class Mapper implements DataMapper {
 
 	/**
-	 * DEFINE O MODEL MAPPER COMO UMA CONFIGURAÇÃO GLOBAL E PADRÃO NO SISTEMA
-	 * UTILIZADO PARA CONVERTER ENTITY EM DTO
+	 * DEFINE MODEL MAPPER TO CONFIG GLOBAL TO SPRING
 	 * 
 	 * @return
 	 */
@@ -22,16 +27,16 @@ public class Mapper implements ModelMapperCustom {
 	}
 
 	/**
-	 * RETORNA UM OBJETO DTO DE UM OBJETO ENTITY
+	 * RETURN ONE OBJECT MAP
 	 */
 	public <D> D map(Object source, Class<D> destinationType) {
 		return this.model().map(source, destinationType);
 	}
 
 	/**
-	 * RETORNA UMA LISTA COM MAP DTO DE UMA LISTA DE ENTITY
+	 * RETURN LIST TO MULTIPLES MAPS OOBJECTS
 	 */
-	public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+	public <S, T> List<T> map(List<S> source, Class<T> targetClass) {
 		return source.stream().map(element -> this.model().map(element, targetClass)).collect(Collectors.toList());
 	}
 
