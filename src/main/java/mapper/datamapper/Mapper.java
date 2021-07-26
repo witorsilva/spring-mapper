@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Convert ENTITY OBJECT AND DTO OBJECT
+ * CONVERT ENTITY OBJECT AND DTO OBJECT
  * 
  * @author Witor S. Olievira
  *
@@ -27,14 +27,14 @@ public class Mapper implements DataMapper {
 	}
 
 	/**
-	 * RETURN ONE OBJECT MAP
+	 * RETURN ONE MAP OBJECT
 	 */
 	public <D> D map(Object source, Class<D> destinationType) {
 		return this.model().map(source, destinationType);
 	}
 
 	/**
-	 * RETURN LIST TO MULTIPLES MAPS OOBJECTS
+	 * RETURN LIST TO MULTIPLES MAPS OBJECTS
 	 */
 	public <S, T> List<T> map(List<S> source, Class<T> targetClass) {
 		return source.stream().map(element -> this.model().map(element, targetClass)).collect(Collectors.toList());
